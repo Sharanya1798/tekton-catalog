@@ -39,10 +39,6 @@ spec:
       workspaces:
         - name: source
           workspace: pipeline-ws
-      resources:
-        outputs:
-          - name: output
-            resource: pipeline-ws
     - name: pipeline-3-cr-build-task
       runAfter: [pipeline-2-maven-build]
       taskRef:
