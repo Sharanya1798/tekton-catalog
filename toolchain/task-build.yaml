@@ -17,7 +17,7 @@ spec:
   workspaces:
     - name: source
       description: The git repo will be cloned onto the volume backing this workspace
-      mountPath: /runtime-agent
+      mountPath: .
   steps:
     - name: run-build
       image: $(params.run-build-image)
@@ -26,7 +26,7 @@ spec:
           value: $(params.pipeline-debug)
         - name: CUSTOM_SCRIPT
           value: $(params.custom-script)
-      workingDir: "/artifacts"
+      workingDir: "."
       script: |
         #!/bin/bash
         set -e -o pipefail;
@@ -39,7 +39,7 @@ spec:
         fi
 
         if [ -z "$CUSTOM_SCRIPT" ]; then
-          if [[ -n $(find /artifacts -name pom.xml) ]]; then
+          if [[ -n $(find . -name pom.xml) ]]; then
             echo "Additional build required. Running Maven build."
             mvn -B package
           else
