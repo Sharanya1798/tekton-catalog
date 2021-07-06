@@ -41,7 +41,7 @@ spec:
         if [ -z "$CUSTOM_SCRIPT" ]; then
           if [[ -n $(find /artifacts/runtime-agent -name pom.xml) ]]; then
             echo "Additional build required. Running Maven build."
-            mvn clean install
+            mvn clean install -DBUILD_ARCH=amd64
           else
             echo "No additional build script to be run."
           fi
