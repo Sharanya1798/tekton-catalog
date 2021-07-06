@@ -26,7 +26,7 @@ spec:
           value: $(params.pipeline-debug)
         - name: CUSTOM_SCRIPT
           value: $(params.custom-script)
-      workingDir: "/artifacts"
+      workingDir: "/artifacts/runtime-agent"
       script: |
         #!/bin/bash
         set -e -o pipefail;
