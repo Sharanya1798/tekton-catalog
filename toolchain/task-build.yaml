@@ -10,7 +10,7 @@ spec:
       default: ""
     - name: run-build-image
       description: The name of the image used for the run-build step
-      default: "ibmcom/pipeline-base-image:2.6"
+      default: "us.icr.io/sharanya_namespaces/first-repository/base-image:2"
     - name: pipeline-debug
       description: Pipeline debug mode
       default: "0"
