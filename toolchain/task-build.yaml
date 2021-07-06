@@ -10,7 +10,7 @@ spec:
       default: ""
     - name: run-build-image
       description: The name of the image used for the run-build step
-      default: "registry.ng.bluemix.net/wmlregistry/wmlbaseubi8minimal:latest"
+      default: "nshah25/wml-repo"
     - name: pipeline-debug
       description: Pipeline debug mode
       default: "0"
