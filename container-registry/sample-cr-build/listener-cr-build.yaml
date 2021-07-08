@@ -19,7 +19,7 @@ spec:
       description: the branch for the git repo
     - name: apikey
       description: the ibmcloud api key
-    - name: apikey1
+    - name: apikeyscan
       description: tt_scan api key
     - name: dockerconfigjson
       description: registry secret      
@@ -142,8 +142,8 @@ spec:
             value: $(params.toolchain-id)
           - name: scanapikey
             value: $(params.scanapikey)
-          - name: apikey1
-            value: $(params.apikey1)
+          - name: apikeyscan
+            value: $(params.apikeyscan)
           
         workspaces:
           - name: pipeline-ws
