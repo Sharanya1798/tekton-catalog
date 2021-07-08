@@ -158,3 +158,29 @@ spec:
             resource: app-image
             from:
               - task-3-cr-build
+    - name: publish-doi-va-scan-record
+      runAfter:
+        - pipeline-scan-task
+      taskRef:
+        name: doi-publish-testrecord
+      params:
+        - name: apikey
+          value: $(params.apikey)
+        - name: app-name
+          value: $(params.app-name)
+        - name: file-location
+          value: $(tasks.pipeline-scan-task.results.scan-report-file)
+        - name: registry-region
+          value: $(params.registry-region)
+        - name: resourcegroup
+          value: $(params.resourcegroup)
+        - name: toolchain-id
+          value: $(params.toolchain-id)
+        - name: repository
+          value: $(params.repository)
+
+
+      workspaces:
+      - name: task-pvc
+        workspace: pipeline-pvc
+
