@@ -151,7 +151,7 @@ spec:
   
       workspaces:
       - name: task-pvc
-        workspace: pipeline-pvc   
+        workspace: pipeline-ws  
       resources:
         inputs:
           - name: image
@@ -182,5 +182,5 @@ spec:
 
       workspaces:
       - name: task-pvc
-        workspace: pipeline-pvc
+        workspace: pipeline-ws
 
