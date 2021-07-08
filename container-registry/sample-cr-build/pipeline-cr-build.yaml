@@ -15,8 +15,6 @@ spec:
       description: The git repo
     - name: apikey
       description: the ibmcloud api key
-    - name: apikey1
-      description: the ibmcloud api key
     - name: registry-namespace
       description: the ibmcloud registry namespace
     - name: cluster
@@ -134,8 +132,8 @@ spec:
       taskRef:
         name: scan-task
       params:
-        - name: apikey1
-          value: $(params.apikey1)
+        - name: apikey
+          value: $(params.apikey)
         - name: registry-namespace
           value: $(params.registry-namespace)
         - name: registry-region
@@ -166,8 +164,8 @@ spec:
       taskRef:
         name: doi-publish-testrecord
       params:
-        - name: apikey1
-          value: $(params.apikey1)
+        - name: apikey
+          value: $(params.apikey)
         - name: app-name
           value: $(params.app-name)
         - name: file-location
