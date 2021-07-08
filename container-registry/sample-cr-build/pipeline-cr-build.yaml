@@ -46,7 +46,6 @@ spec:
       description: apikey for scanning of images
     - name: apikey1
       description: tt_scan api key
-      default: vlKjPNQvNx6vXrvpyZyByLM--V2-mk79zZLMYby4Dn2G
     - name: pipeline-debug
       default: "0"
   resources:
