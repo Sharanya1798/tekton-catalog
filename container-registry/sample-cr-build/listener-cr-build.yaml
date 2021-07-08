@@ -13,6 +13,41 @@ spec:
       description: The image url in your container registry
     - name: path-to-dockerfile
       default: "."
+    - name: Repository
+      description: The git repo
+    - name: apikey
+      description: the ibmcloud api key
+    - name: registry-namespace
+      description: the ibmcloud registry namespace
+    - name: cluster
+      description: The IBM Cloud Kubernetes cluster name
+    - name: registry-region
+      description: the ibmcloud registry region
+      default: us-south
+    - name: clusterRegion
+      description: The IBM Cloud Kubernetes cluster region
+      default: us-south
+    - name: clusterNamespace
+      description: The Kubernetes cluster namespace
+      default: prod
+    - name: image-url
+      description: image to scan
+    - name: account
+      description: account info
+    - name: password
+      description: password of the account
+    - name: app-name
+      description: Logical application name for DevOps Insights
+    - name: resourcegroup
+      description: toolchain resource group
+    - name: toolchain-id
+      description: |
+        Toolchain service instance id.
+        Default to the toolchain containing the CD Tekton PipelineRun currently executed
+      default: ""
+    - name: scanapikey
+      description: apikey for scanning of images
+
     - name: pipeline-debug
       default: "0"
   resourcetemplates:
