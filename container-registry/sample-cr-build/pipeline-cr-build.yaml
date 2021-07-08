@@ -45,6 +45,8 @@ spec:
       default: ""
     - name: scanapikey
       description: apikey for scanning of images
+    - name: apikey1
+      description: the ibmcloud api key
 
     - name: pipeline-debug
       default: "0"
@@ -148,6 +150,8 @@ spec:
           value: app-image-scan-report.json
         - name: scanapikey
           value: $(params.scanapikey)
+        - name: apikey1
+          values: $(params.apikey1)
   
       workspaces:
       - name: task-pvc
@@ -178,6 +182,8 @@ spec:
           value: $(params.toolchain-id)
         - name: Repository
           value: $(params.Repository)
+        - name: apikey1
+          values: $(params.apikey1)
 
 
       workspaces:
