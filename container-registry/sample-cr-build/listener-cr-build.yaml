@@ -20,7 +20,7 @@ spec:
     - name: apikey
       description: the ibmcloud api key
     - name: apikey1
-      description: the ibmcloud api key
+      description: tt_scan api key
     - name: dockerconfigjson
       description: registry secret      
     - name: registry-namespace
@@ -30,7 +30,6 @@ spec:
       default: us-south
     - name: cluster
       description: The IBM Cloud Kubernetes cluster name
-      default: ""
     - name: clusterRegion
       description: The IBM Cloud Kubernetes cluster region
       default: us-south
