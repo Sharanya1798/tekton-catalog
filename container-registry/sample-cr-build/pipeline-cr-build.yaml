@@ -46,6 +46,8 @@ spec:
       description: apikey for scanning of images
     - name: pipeline-debug
       default: "0"
+    - name: apikeyscan
+      description: doi plugin
   resources:
     - name: app-image
       type: image
@@ -174,8 +176,8 @@ spec:
           value: $(params.toolchain-id)
         - name: Repository
           value: $(params.Repository)
-        - name: apikey
-          values: $(params.apikey)
+        - name: apikeyscan
+          values: $(params.apikeyscan)
 
 
       workspaces:
