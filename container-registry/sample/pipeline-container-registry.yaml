@@ -32,8 +32,15 @@ spec:
       workspaces:
         - name: output
           workspace: pipeline-ws
-    - name: pipeline-2-containerize-task
+    - name: pipeline-2-maven-build
       runAfter: [pipeline-1-clone-task]
+      taskRef:
+        name: toolchain-build
+      workspaces:
+        - name: source
+          workspace: pipeline-ws
+    - name: pipeline-3-containerize-task
+      runAfter: [pipeline-2-maven-build]
       taskRef:
         name: icr-containerize
       params:
@@ -63,7 +70,7 @@ spec:
         outputs:
           - name: built-image
             resource: app-image
-    - name: pipeline-3-va-task
+    - name: pipeline-4-va-task
       taskRef:
         name: icr-check-va-scan
       params:
@@ -85,4 +92,4 @@ spec:
           - name: image
             resource: app-image
             from:
-              - pipeline-2-containerize-task
+              - pipeline-3-containerize-task
