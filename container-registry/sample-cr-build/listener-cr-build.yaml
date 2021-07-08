@@ -13,7 +13,7 @@ spec:
       description: The image url in your container registry
     - name: path-to-dockerfile
       default: "."
-   - name: Repository
+    - name: Repository
       description: The git repo
     - name: revision
       description: the branch for the git repo
