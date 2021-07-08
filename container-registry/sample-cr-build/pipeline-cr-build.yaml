@@ -44,8 +44,6 @@ spec:
         Default to the toolchain containing the CD Tekton PipelineRun currently executed
     - name: scanapikey
       description: apikey for scanning of images
-    - name: apikeyscan
-      description: tt_scan api key
     - name: pipeline-debug
       default: "0"
   resources:
@@ -146,8 +144,8 @@ spec:
           value: app-image-scan-report.json
         - name: scanapikey
           value: $(params.scanapikey)
-        - name: apikeyscan
-          values: $(params.apikeyscan)
+        - name: apikey
+          values: $(params.apikey)
   
       workspaces:
       - name: task-pvc
@@ -176,8 +174,8 @@ spec:
           value: $(params.toolchain-id)
         - name: Repository
           value: $(params.Repository)
-        - name: apikeyscan
-          values: $(params.apikeyscan)
+        - name: apikey
+          values: $(params.apikey)
 
 
       workspaces:
