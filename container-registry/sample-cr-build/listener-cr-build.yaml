@@ -13,17 +13,22 @@ spec:
       description: The image url in your container registry
     - name: path-to-dockerfile
       default: "."
-    - name: Repository
+   - name: Repository
       description: The git repo
+    - name: revision
+      description: the branch for the git repo
     - name: apikey
       description: the ibmcloud api key
+    - name: dockerconfigjson
+      description: registry secret      
     - name: registry-namespace
       description: the ibmcloud registry namespace
-    - name: cluster
-      description: The IBM Cloud Kubernetes cluster name
     - name: registry-region
       description: the ibmcloud registry region
       default: us-south
+    - name: cluster
+      description: The IBM Cloud Kubernetes cluster name
+      default: ""
     - name: clusterRegion
       description: The IBM Cloud Kubernetes cluster region
       default: us-south
@@ -47,9 +52,8 @@ spec:
       default: ""
     - name: scanapikey
       description: apikey for scanning of images
-
     - name: pipeline-debug
-      default: "0"
+      default: 0
   resourcetemplates:
     - apiVersion: tekton.dev/v1alpha1
       kind: PipelineResource
@@ -72,11 +76,26 @@ spec:
         volumeMode: Filesystem
         accessModes:
           - ReadWriteOnce
+    - apiVersion: v1
+      kind: Secret
+      data:
+        .dockerconfigjson: eyJhdXRocyI6eyJ1cy5pY3IuaW8iOnsidXNlcm5hbWUiOiJpYW1hcGlrZXkiLCJwYXNzd29yZCI6InZsS2pQTlF2Tng2dlhydnB5WnlCeUxNLS1WMi1tazc5elpMTVlieTREbjJHIiwiYXV0aCI6ImFXRnRZWEJwYTJWNU9uWnNTMnBRVGxGMlRuZzJkbGh5ZG5CNVdubENlVXhOTFMxV01pMXRhemM1ZWxwTVRWbGllVFJFYmpKSCJ9fX0=
+      metadata:
+        name: docker-auth-for-tekton
+      type: kubernetes.io/dockerconfigjson  
+    - apiVersion: v1
+      kind: ServiceAccount
+      metadata:
+        name: build-bot
+      imagePullSecrets:  
+        - name: docker-auth-for-tekton
+
     - apiVersion: tekton.dev/v1beta1
       kind: PipelineRun
       metadata:
         name: cr-build-$(uid)
       spec:
+        serviceAccountName: build-bot
         pipelineRef:
           name: cr-build
         resources:
@@ -92,6 +111,37 @@ spec:
             value: $(params.path-to-dockerfile)
           - name: pipeline-debug
             value: $(params.pipeline-debug)
+          - name: Repository
+            value: $(params.Repository)
+          - name: revision
+            value: $(params.revision)
+          - name: apikey
+            value: $(params.apikey)
+          - name: registry-namespace
+            value: $(params.registry-namespace)
+          - name: registry-region
+            value: $(params.registry-region)
+          - name: cluster
+            value: $(params.cluster)
+          - name: clusterRegion
+            value: $(params.clusterRegion)
+          - name: clusterNamespace
+            value: $(params.clusterNamespace)
+          - name: image-url
+            value: $(params.image-url)
+          - name: account
+            value: $(params.account)
+          - name: password
+            value: $(params.password)
+          - name: app-name
+            value: $(params.app-name)
+          - name: resourcegroup
+            value: $(params.resourcegroup)
+          - name: toolchain-id
+            value: $(params.toolchain-id)
+          - name: scanapikey
+            value: $(params.scanapikey)
+
         workspaces:
           - name: pipeline-ws
             persistentVolumeClaim:
