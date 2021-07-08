@@ -45,8 +45,7 @@ spec:
     - name: scanapikey
       description: apikey for scanning of images
     - name: apikey1
-      description: the ibmcloud api key
-
+      description: tt_scan api key
     - name: pipeline-debug
       default: "0"
   resources:
