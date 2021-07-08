@@ -166,3 +166,26 @@ spec:
         name: cr-build
       template:
         name: cr-build
+---
+apiVersion: tekton.dev/v1beta1
+kind: TriggerBinding
+metadata:
+  name: binding
+spec:
+  params:
+    - name: repository
+      value: "https://github.com/Shraddha8269/tekton-twistlock"
+    - name: revision
+      value: "main"
+---
+apiVersion: tekton.dev/v1beta1
+kind: EventListener
+metadata:
+  name: listener
+spec:
+  triggers:
+    - binding:
+        name: binding
+      template:
+        name: cr-build
+
