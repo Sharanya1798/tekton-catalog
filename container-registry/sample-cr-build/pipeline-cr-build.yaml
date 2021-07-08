@@ -11,6 +11,41 @@ spec:
       description: the branch for the git repo
     - name: path-to-dockerfile
       default: "."
+    - name: Repository
+      description: The git repo
+    - name: apikey
+      description: the ibmcloud api key
+    - name: registry-namespace
+      description: the ibmcloud registry namespace
+    - name: cluster
+      description: The IBM Cloud Kubernetes cluster name
+    - name: registry-region
+      description: the ibmcloud registry region
+      default: us-south
+    - name: clusterRegion
+      description: The IBM Cloud Kubernetes cluster region
+      default: us-south
+    - name: clusterNamespace
+      description: The Kubernetes cluster namespace
+      default: prod
+    - name: image-url
+      description: image to scan
+    - name: account
+      description: account info
+    - name: password
+      description: password of the account
+    - name: app-name
+      description: Logical application name for DevOps Insights
+    - name: resourcegroup
+      description: toolchain resource group
+    - name: toolchain-id
+      description: |
+        Toolchain service instance id.
+        Default to the toolchain containing the CD Tekton PipelineRun currently executed
+      default: ""
+    - name: scanapikey
+      description: apikey for scanning of images
+
     - name: pipeline-debug
       default: "0"
   resources:
@@ -87,6 +122,36 @@ spec:
       workspaces:
         - name: artifacts
           workspace: pipeline-ws
+      resources:
+        inputs:
+          - name: image
+            resource: app-image
+            from:
+              - task-3-cr-build
+    - name: pipeline-scan-task
+      taskRef:
+        name: scan-task
+      params:
+        - name: apikey
+          value: $(params.apikey)
+        - name: registry-namespace
+          value: $(params.registry-namespace)
+        - name: registry-region
+          value: $(params.registry-region)
+        - name: image-url
+          value: $(params.image-url)
+        - name: account
+          value: $(params.account)
+        - name: password
+          value: $(params.password)
+        - name: scan-report-file
+          value: app-image-scan-report.json
+        - name: scanapikey
+          value: $(params.scanapikey)
+  
+      workspaces:
+      - name: task-pvc
+        workspace: pipeline-pvc   
       resources:
         inputs:
           - name: image
