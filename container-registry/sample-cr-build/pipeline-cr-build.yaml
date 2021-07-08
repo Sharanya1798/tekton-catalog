@@ -19,7 +19,7 @@ spec:
   workspaces:
     - name: pipeline-ws
   tasks:
-    - name: pipeline-1-clone-task
+    - name: task-1-git-clone
       taskRef:
         name: git-clone-repo
       params:
@@ -32,15 +32,15 @@ spec:
       workspaces:
         - name: output
           workspace: pipeline-ws
-    - name: pipeline-2-maven-build
-      runAfter: [pipeline-1-clone-task]
+    - name: task-2-maven-build
+      runAfter: [task-1-git-clone]
       taskRef:
         name: toolchain-build
       workspaces:
         - name: source
           workspace: pipeline-ws
-    - name: pipeline-3-cr-build-task
-      runAfter: [pipeline-2-maven-build]
+    - name: task-3-cr-build
+      runAfter: [task-2-maven-build]
       taskRef:
         name: icr-cr-build
       params:
@@ -70,7 +70,7 @@ spec:
         outputs:
           - name: built-image
             resource: app-image
-    - name: pipeline-4-va-task
+    - name: task-4-va-scan
       taskRef:
         name: icr-check-va-scan
       params:
@@ -92,4 +92,4 @@ spec:
           - name: image
             resource: app-image
             from:
-              - pipeline-3-cr-build-task
+              - task-3-cr-build
