@@ -15,7 +15,7 @@ spec:
       description: The git repo
     - name: apikey
       description: the ibmcloud api key
-     - name: apikey1
+    - name: apikey1
       description: the ibmcloud api key
     - name: registry-namespace
       description: the ibmcloud registry namespace
