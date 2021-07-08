@@ -42,7 +42,6 @@ spec:
       description: |
         Toolchain service instance id.
         Default to the toolchain containing the CD Tekton PipelineRun currently executed
-      default: ""
     - name: scanapikey
       description: apikey for scanning of images
     - name: apikey1
