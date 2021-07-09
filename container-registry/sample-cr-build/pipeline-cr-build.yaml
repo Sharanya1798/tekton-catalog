@@ -135,7 +135,7 @@ spec:
         - name: app-name
           value: $(params.app-name)
         - name: file-location
-          value: $(tasks.pipeline-scan-task.results.scan-report-file1)
+          value: $(tasks.pipeline-scan-task.results.scan-report-file)
         - name: registry-region
           value: $(params.registry-region)
         - name: resourcegroup
