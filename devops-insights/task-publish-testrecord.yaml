@@ -38,6 +38,8 @@ spec:
     - name: api
       description: the ibmcloud api
       default: https://cloud.ibm.com
+    - name: test-types
+      default: vulnerabilityadvisor
   workspaces:
     - name: artifacts
       description: A workspace containing the test results file to pubslih to DOI
