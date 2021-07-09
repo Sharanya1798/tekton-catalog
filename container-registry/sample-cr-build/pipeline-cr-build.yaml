@@ -127,8 +127,6 @@ spec:
             from:
               - task-3-cr-build
     - name: pipeline-scan-task
-      runAfter: 
-        - task-3-cr-build
       taskRef:
         name: scan-task
       params:
@@ -148,13 +146,13 @@ spec:
           value: $(params.apikey)
         - name: image-url
           value: $(params.image-url)
-        - name: image-registry
-          value: $(tasks.task-3-cr-build.results.image-repository)
-        - name: image-tag
-          value: latest
-          
-  
-      workspaces:
+      resources:
+        inputs:
+          - name: image
+            resource: app-image
+            from:
+              - task-3-cr-build
+     workspaces:
       - name: task-pvc
         workspace: pipeline-ws  
     - name: publish-doi-va-scan-record
