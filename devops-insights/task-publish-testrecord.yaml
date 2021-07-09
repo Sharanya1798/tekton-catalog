@@ -24,7 +24,7 @@ spec:
         Optional, The environment name to associate with the test results.
         This option is ignored for unit tests, code coverage tests, and static security scans.
       default: ""
-    - name: ibmcloud-api
+    - name: apikeyscan
       description: the ibmcloud api
       default: https://cloud.ibm.com
     - name: continuous-delivery-context-secret
@@ -49,13 +49,7 @@ spec:
       image: ibmcom/pipeline-base-image:2.6
       env:
         - name: IBM_CLOUD_API
-          value: $(params.ibmcloud-api)
-        - name: IBM_CLOUD_API_KEY
-          valueFrom:
-            secretKeyRef:
-              name: $(params.continuous-delivery-context-secret)
-              key: $(params.toolchain-apikey-secret-key)
-              optional: true
+          value: $(params.apikeyscan)
         - name: APP_NAME
           value: $(params.app-name)
         - name: TOOLCHAIN_ID
