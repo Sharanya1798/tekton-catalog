@@ -148,8 +148,11 @@ spec:
           value: $(params.apikey)
         - name: image-url
           value: $(params.image-url)
-        - name: image
-          value: $(tasks.task-3-cr-build.$(results.image-repository.path). $(results.image-tags.path))
+        - name: image_registry
+          value: $(tasks.task-3-cr-build.results.image-repository)
+        - name: image_tag
+          value: latest
+          
   
       workspaces:
       - name: task-pvc
