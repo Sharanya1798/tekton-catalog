@@ -216,10 +216,10 @@ spec:
           echo "Showing extended vulnerability assessment report for ${PIPELINE_IMAGE_URL}"
           ibmcloud cr va -e ${PIPELINE_IMAGE_URL} || true
           set -e
-          if [ "$(params.scan-report-file)" ]; then
+          if [ "$(params.scan-report-file1)" ]; then
             echo -n "Copy Vulnerability Advisor scan report (JSON format) to "
-            echo "$(workspaces.artifacts.path)/$(params.scan-report-file)"
-            cp /steps/vareport.json $(workspaces.artifacts.path)/$(params.scan-report-file)
+            echo "$(workspaces.artifacts.path)/$(params.scan-report-file1)"
+            cp /steps/vareport.json $(workspaces.artifacts.path)/$(params.scan-report-file1)
           fi
 
           # Record task results
