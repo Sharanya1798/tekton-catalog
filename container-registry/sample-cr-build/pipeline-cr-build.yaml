@@ -144,8 +144,6 @@ spec:
           value: app-image-scan-report.json
         - name: apikey
           value: $(params.apikey)
-        - name: image-url
-          value: $(params.image-url)
       resources:
         inputs:
           - name: image
