@@ -2,7 +2,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: doi-publish-va-testrecord
+  name: doi-publish-testrecord
 spec:
   params:
     - name: app-name
@@ -19,14 +19,14 @@ spec:
       description: Semi-colon separated list of test result file locations
     - name: test-types
       description: Semi-colon separated list of test result types
-      default: vulnerabilityadvisor
     - name: environment
       description: |
         Optional, The environment name to associate with the test results.
         This option is ignored for unit tests, code coverage tests, and static security scans.
       default: ""
-    - name: apikeyscan
-      description: the doi apikey
+    - name: ibmcloud-api
+      description: the ibmcloud api
+      default: https://cloud.ibm.com
     - name: continuous-delivery-context-secret
       description: Name of the secret containing the continuous delivery pipeline context secrets
       default: "secure-properties"
@@ -36,11 +36,6 @@ spec:
     - name: pipeline-debug
       description: Pipeline debug mode. Value can be 0 or 1. Default to 0
       default: "0"
-    - name: api
-      description: the ibmcloud api
-      default: https://cloud.ibm.com
-   
-     
   workspaces:
     - name: artifacts
       description: A workspace containing the test results file to pubslih to DOI
@@ -54,9 +49,13 @@ spec:
       image: ibmcom/pipeline-base-image:2.6
       env:
         - name: IBM_CLOUD_API
-          value: $(params.api)
-        - name: IBM_CLOUD_API_kEY
-          value: $(params.apikeyscan)
+          value: $(params.ibmcloud-api)
+        - name: IBM_CLOUD_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: $(params.continuous-delivery-context-secret)
+              key: $(params.toolchain-apikey-secret-key)
+              optional: true
         - name: APP_NAME
           value: $(params.app-name)
         - name: TOOLCHAIN_ID
