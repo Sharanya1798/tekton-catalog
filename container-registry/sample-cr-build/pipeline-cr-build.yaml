@@ -126,6 +126,29 @@ spec:
             resource: app-image
             from:
               - task-3-cr-build
+    - name: publish-doi-va-scan-record
+      runAfter:
+        - task-4-va-scan
+      taskRef:
+        name: doi-publish-testrecord
+      params:
+        - name: app-name
+          value: $(params.app-name)
+        - name: file-location
+          value: $(tasks.pipeline-scan-task.results.scan-report-file1)
+        - name: registry-region
+          value: $(params.registry-region)
+        - name: resourcegroup
+          value: $(params.resourcegroup)
+        - name: toolchain-id
+          value: $(params.toolchain-id)
+        - name: Repository
+          value: $(params.Repository)
+        - name: apikeyscan
+          value: $(params.apikeyscan)
+      workspaces:
+      - name: artifacts
+       workspace: pipeline-ws
     - name: pipeline-scan-task
       taskRef:
         name: scan-task
@@ -153,7 +176,7 @@ spec:
       workspaces:
       - name: task-pvc
         workspace: pipeline-ws  
-    - name: publish-doi-va-scan-record
+    - name: publish-doi-twistlock-scan-record
       runAfter:
         - pipeline-scan-task
       taskRef:
