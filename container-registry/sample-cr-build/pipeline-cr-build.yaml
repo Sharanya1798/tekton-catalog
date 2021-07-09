@@ -130,7 +130,7 @@ spec:
       runAfter:
        - task-4-va-scan
       taskRef:
-        name: doi-publish-va-testrecord
+        name: doi-publish-testrecord
       params:
         - name: app-name
           value: $(params.app-name)
