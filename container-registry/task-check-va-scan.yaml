@@ -44,7 +44,7 @@ spec:
       description: Pipeline debug mode. Value can be 0 or 1. Default to 0
       default: "0"
   results:
-    - name: scan-report-file
+    - name: scan-report-file1
       description: the filename if the scan report for the image stored in the workspace
     - name: scan-status
       description: |
@@ -223,7 +223,7 @@ spec:
           fi
 
           # Record task results
-          echo -n "$(params.scan-report-file)" > $(results.scan-report-file.path)
+          echo -n "$(params.scan-report-file)" > $(results.scan-report-file1.path)
           echo -n "${STATUS}" > $(results.scan-status.path)
 
           if [[ "${STATUS}" == "OK" ]] || [[ "${STATUS}" == "UNSUPPORTED" ]] || [[ "${STATUS}" == "WARN" ]]; then
