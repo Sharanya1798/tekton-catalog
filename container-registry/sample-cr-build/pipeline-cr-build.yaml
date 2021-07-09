@@ -107,7 +107,7 @@ spec:
       taskRef:
         name: icr-check-va-scan
       params:
-        - name: scan-report-file
+        - name: scan-report-file1
           value: "app-image-va-report.json"
         # - name: max-iteration
         #   value: '5'
@@ -126,12 +126,12 @@ spec:
             resource: app-image
             from:
               - task-3-cr-build
-    - name: publish-doi-va-scan-record
-      runAfter:
+     - name: publish-doi-va-scan-record
+       runAfter:
         - task-4-va-scan
-      taskRef:
-        name: doi-publish-testrecord
-      params:
+       taskRef:
+         name: doi-publish-testrecord
+       params:
         - name: app-name
           value: $(params.app-name)
         - name: file-location
