@@ -152,7 +152,7 @@ spec:
             resource: app-image
             from:
               - task-3-cr-build
-     workspaces:
+      workspaces:
       - name: task-pvc
         workspace: pipeline-ws  
     - name: publish-doi-va-scan-record
