@@ -149,7 +149,7 @@ spec:
         - name: image-url
           value: $(params.image-url)
         - name: image
-          value: $(tasks.task-3-cr-build.results.$(results.image-repository.path). $(results.image-tags.path))
+          value: $(tasks.task-3-cr-build.$(results.image-repository.path). $(results.image-tags.path))
   
       workspaces:
       - name: task-pvc
