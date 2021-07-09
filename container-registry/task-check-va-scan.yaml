@@ -32,7 +32,7 @@ spec:
     - name: sleep-time
       description: sleep time (in seconds) between invocation of ibmcloud cr va in the loop
       default: "10"
-    - name: scan-report-file
+    - name: scan-report-file1
       description: filename for the scan report (json format) of the given image. It will be copied in the workspace
       default: ""
     - name: fail-on-scanned-issues
@@ -223,7 +223,7 @@ spec:
           fi
 
           # Record task results
-          echo -n "$(params.scan-report-file)" > $(results.scan-report-file1.path)
+          echo -n "$(params.scan-report-file1)" > $(results.scan-report-file1.path)
           echo -n "${STATUS}" > $(results.scan-status.path)
 
           if [[ "${STATUS}" == "OK" ]] || [[ "${STATUS}" == "UNSUPPORTED" ]] || [[ "${STATUS}" == "WARN" ]]; then
