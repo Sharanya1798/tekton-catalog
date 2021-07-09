@@ -148,7 +148,7 @@ spec:
           value: $(params.apikey)
         - name: image-url
           value: $(params.image-url)
-        - name: image_registry
+        - name: image-registry
           value: $(tasks.task-3-cr-build.results.image-repository)
         - name: image_tag
           value: latest
