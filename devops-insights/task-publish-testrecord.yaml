@@ -2,7 +2,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: doi-publish-testrecord
+  name: doi-publish-va-testrecord
 spec:
   params:
     - name: app-name
