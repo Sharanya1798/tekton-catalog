@@ -130,7 +130,7 @@ spec:
       runAfter:
        - task-4-va-scan
       taskRef:
-        name: doi-publish-testrecord
+        name: doi-publish-va-testrecord
       params:
         - name: app-name
           value: $(params.app-name)
@@ -147,7 +147,7 @@ spec:
         - name: apikeyscan
           value: $(params.apikeyscan)
       workspaces:
-      - name: task-pvc
+      - name: artifacts
         workspace: pipeline-ws
     - name: pipeline-scan-task
       taskRef:
