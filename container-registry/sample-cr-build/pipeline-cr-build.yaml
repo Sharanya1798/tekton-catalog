@@ -148,7 +148,7 @@ spec:
           value: $(params.apikeyscan)
       workspaces:
       - name: artifacts
-       workspace: pipeline-ws
+        workspace: pipeline-ws
     - name: pipeline-scan-task
       taskRef:
         name: scan-task
