@@ -168,4 +168,30 @@ spec:
       workspaces:
       - name: task-pvc
         workspace: pipeline-ws  
-   
+    - name: publish-doi-twistlock-scan-record
+      runAfter:
+        - pipeline-scan-task
+      taskRef:
+        name: doi-publish-testrecord
+      params:
+        - name: app-name
+          value: $(params.app-name)
+        - name: file-location
+          value: $(tasks.pipeline-scan-task.results.scan-report-file)
+        - name: registry-region
+          value: $(params.registry-region)
+        - name: resourcegroup
+          value: $(params.resourcegroup)
+        - name: toolchain-id
+          value: $(params.toolchain-id)
+        - name: Repository
+          value: $(params.Repository)
+        - name: apikeyscan
+          value: $(params.apikeyscan)
+
+
+      workspaces:
+      - name: task-pvc
+        workspace: pipeline-ws
+
+
