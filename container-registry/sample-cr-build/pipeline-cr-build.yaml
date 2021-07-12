@@ -152,7 +152,7 @@ spec:
         - name: apikeyscan
           value: $(params.apikeyscan)
         - name: build-number
-          value: $(tasks.publish-doi-buildrecord.results.build-number)
+          value: $(tasks.publish-buildrecord-task.results.build-number)
         - name: app-name
           value: $(params.app-name)
         - name: file-locations
