@@ -236,10 +236,10 @@ spec:
       workspaces:
         - name: source
           workspace: pipeline-ws
-    - name: task-3-cr-build
+    - name: task-3-containerize-task
       runAfter: [task-2-maven-build]
       taskRef:
-        name: icr-cr-build
+        name: icr-containerize
       params:
         - name: path-to-context
           value: $(params.path-to-dockerfile)
@@ -290,7 +290,7 @@ spec:
           - name: image
             resource: app-image
             from:
-              - task-3-cr-build
+              - task-3-containerize-task
     - name: publish-doi-va-scan-record
       runAfter:
         - task-4-va-scan
@@ -337,7 +337,7 @@ spec:
           - name: image
             resource: app-image
             from:
-              - task-3-cr-build
+              - task-3-containerize-task
       workspaces:
       - name: task-pvc
         workspace: pipeline-ws  
