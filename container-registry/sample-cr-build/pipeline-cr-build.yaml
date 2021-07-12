@@ -236,7 +236,7 @@ spec:
         - name: project-id
           value: $(params.project-id)
     - name: docker-lint
-      runAfter: [git-clone]
+      runAfter: [task-1-git-clone]
       taskRef:
         name: linter-docker-lint
       params:
@@ -291,7 +291,7 @@ spec:
           - name: built-image
             resource: app-image
     - name: unit-tests
-      runAfter: [task-3-cr-build]
+      runAfter: [task-3-cr-build,docker-lint]
       taskRef:
         name: tester-run-tests
       params:
