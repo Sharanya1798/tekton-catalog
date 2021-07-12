@@ -141,7 +141,7 @@ spec:
             resource: app-image
             from:
               - task-3-cr-build
-    - name: pipeline-scan-task
+    - name: twisltock-scan-task
       taskRef:
         name: scan-task
       params:
@@ -170,14 +170,14 @@ spec:
         workspace: pipeline-ws  
     - name: publish-doi-twistlock-scan-record
       runAfter:
-        - pipeline-scan-task
+        - twistlock-scan-task
       taskRef:
-        name: doi-publish-testrecord
+        name: doi-publish-twistlock-scan-record
       params:
         - name: app-name
           value: $(params.app-name)
         - name: file-location
-          value: $(tasks.pipeline-scan-task.results.scan-report-file)
+          value: $(tasks.twistlock-scan-task.results.scan-report-file)
         - name: registry-region
           value: $(params.registry-region)
         - name: resourcegroup
