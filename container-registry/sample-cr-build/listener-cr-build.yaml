@@ -74,6 +74,10 @@ spec:
       default: ""
     - name: commons-hosted-region
       default: ""
+    - name: fail-on-lint-errors
+      description: force failure of task when docker lint errors are found
+      default: "true"
+
 
 
 
@@ -178,6 +182,9 @@ spec:
             value: $(params.project-id)
           - name: commons-hosted-region
             value: $(params.commons-hosted-region)
+          - name: fail-on-lint-errors
+            value: $(params.fail-on-lint-errors)
+
 
 
          
