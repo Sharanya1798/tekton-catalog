@@ -55,14 +55,14 @@ spec:
     - name: extract-repository-url
       taskRef:
         name: toolchain-extract-value
-       params:
-         - name: expression
-           value: >-
-             . as $toolchain | ["$(params.repository)"] | if .[0]=="" then
-             $toolchain | .services[] | select(.toolchain_binding.name=="repo")
-             | .dashboard_url else .[0] end
-         - name: pipeline-debug
-           value: $(params.pipeline-debug)
+      params:
+        - name: expression
+          value: >-
+            . as $toolchain | ["$(params.repository)"] | if .[0]=="" then
+            $toolchain | .services[] | select(.toolchain_binding.name=="repo")
+            | .dashboard_url else .[0] end
+        - name: pipeline-debug
+          value: $(params.pipeline-debug)
     - name: task-1-git-clone
       taskRef:
         name: git-clone-repo
@@ -76,6 +76,16 @@ spec:
       workspaces:
         - name: output
           workspace: pipeline-ws
+    - name: extract-doi-enablement
+      taskRef:
+        name: toolchain-extract-value
+      params:
+        # count the number of service in the toolchain that are DevopsInsights
+        - name: expression
+          value: 'reduce .services[] as $service (0; if $service.service_id=="draservicebroker" then .+1 else . end)'
+        - name: pipeline-debug
+          value: $(params.pipeline-debug)
+
     - name: publish-buildrecord-task
       runAfter: [task-1-git-clone]
       taskRef:
