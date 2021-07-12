@@ -66,6 +66,10 @@ spec:
       default: "true"
     - name: commons-hosted-region
       default: "https://raw.githubusercontent.com/open-toolchain/commons/master"
+    - name: fail-on-lint-errors
+      description: force failure of task when docker lint errors are found
+      default: "true"
+
 
 
 
