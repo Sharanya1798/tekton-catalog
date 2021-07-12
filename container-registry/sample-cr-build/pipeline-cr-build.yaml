@@ -55,7 +55,7 @@ spec:
     - name: keep-ingress-custom-domain
       description: force keep of ingress custom domain in deployment-file if any (true|false)
       default: "false"
-     - name: pr-url
+    - name: pr-url
       description: pr url
     - name: commit-timestamp
     - name: scm-type
