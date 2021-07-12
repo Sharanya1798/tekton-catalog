@@ -141,7 +141,7 @@ spec:
             resource: app-image
             from:
               - task-3-cr-build
-    - name: twisllock-scan-task
+    - name: twistlock-scan-task
       taskRef:
         name: scan-task
       params:
