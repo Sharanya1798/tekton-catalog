@@ -87,7 +87,12 @@ spec:
           value: $(params.pipeline-debug)
 
     - name: publish-buildrecord-task
-      runAfter: [task-1-git-clone]
+      runAfter: [extract-doi-enablement]
+      when:
+        - input: $(tasks.extract-doi-enablement.results.extracted-value)
+          operator: in
+          values: ["1"]
+
       taskRef:
         name: doi-publish-buildrecord
       params:
