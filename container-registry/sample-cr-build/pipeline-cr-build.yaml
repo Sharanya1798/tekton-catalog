@@ -80,6 +80,8 @@ spec:
           value: $(tasks.task-1-git-clone.results.git-commit)
         - name: pipeline-debug
           value: $(params.pipeline-debug)
+        - name: apikeyscan
+          value: $(params.apikeyscan)
     - name: task-2-maven-build
       runAfter: [task-1-git-clone]
       taskRef:
