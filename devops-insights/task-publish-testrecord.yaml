@@ -53,7 +53,7 @@ spec:
         - name: IBM_CLOUD_API
           value: $(params.ibmcloud-api)
         - name: IBM_CLOUD_API_KEY
-          value:$(params.apikeyscan)
+          value: $(params.apikeyscan)
         - name: APP_NAME
           value: $(params.app-name)
         - name: TOOLCHAIN_ID
