@@ -293,8 +293,8 @@ spec:
       taskRef:
         name: doi-publish-testrecord
       params:
-        - name: toolchain-apikey-secret-key
-          value: "toolchain-apikey"
+        - name: apikeyscan
+          value: $(params.apikeyscan)
         - name: build-number
           value: "$(tasks.publish-buildrecord-task.results.build-number)"
         - name: app-name
