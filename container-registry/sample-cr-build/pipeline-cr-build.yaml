@@ -165,6 +165,8 @@ spec:
         - name: artifacts
           workspace: pipeline-ws
     - name: twistlock-scan-task
+      runAfter:
+        - task-4-va-scan
       taskRef:
         name: scan-task
       params:
