@@ -66,16 +66,8 @@ spec:
       default: "true"
     - name: commons-hosted-region
       default: "https://raw.githubusercontent.com/open-toolchain/commons/master"
-    - name: fail-on-lint-errors
-      description: force failure of task when docker lint errors are found
-      default: "true"
-    - name: dockerfile
-      default: "Dockerfile"
-
-
-
-
-
+   
+   
 
   resources:
     - name: app-image
@@ -236,22 +228,6 @@ spec:
           value: $(params.scm-type)
         - name: project-id
           value: $(params.project-id)
-    - name: docker-lint
-      runAfter: [task-1-git-clone]
-      taskRef:
-        name: linter-docker-lint
-      params:
-        - name: path-to-dockerfile
-          value: $(params.path-to-dockerfile)
-        - name: dockerfile
-          value: $(params.dockerfile)
-        - name: fail-on-lint-errors
-          value: $(params.fail-on-lint-errors)
-        - name: pipeline-debug
-          value: $(params.pipeline-debug)
-      workspaces:
-        - name: workspace
-          workspace: pipeline-ws
 
     - name: task-2-maven-build
       runAfter: [task-1-git-clone]
