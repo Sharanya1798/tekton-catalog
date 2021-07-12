@@ -296,7 +296,7 @@ spec:
         - name: toolchain-apikey-secret-key
           value: "toolchain-apikey"
         - name: build-number
-          value: "$(tasks.publish-doi-buildrecord.results.build-number)"
+          value: "$(tasks.publish-buildrecord.results.build-number)"
         - name: app-name
           value: $(params.app-name)
         - name: file-locations
