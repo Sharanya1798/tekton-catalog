@@ -5,6 +5,8 @@ metadata:
   name: doi-publish-buildrecord
 spec:
   params:
+    - name: apikeyscan
+      description: doi plugin
     - name: app-name
       description: Logical application name for DevOps Insights
     - name: toolchain-id
@@ -53,11 +55,7 @@ spec:
         - name: IBM_CLOUD_API
           value: $(params.ibmcloud-api)
         - name: IBM_CLOUD_API_KEY
-          valueFrom:
-            secretKeyRef:
-              name: $(params.continuous-delivery-context-secret)
-              key: $(params.toolchain-apikey-secret-key)
-              optional: true
+          value: $(params.apikeyscan)
         - name: APP_NAME
           value: $(params.app-name)
         - name: TOOLCHAIN_ID
