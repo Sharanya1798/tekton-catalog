@@ -77,6 +77,9 @@ spec:
     - name: fail-on-lint-errors
       description: force failure of task when docker lint errors are found
       default: "true"
+    - name: dockerfile
+      default: "Dockerfile"
+
 
 
 
@@ -184,6 +187,9 @@ spec:
             value: $(params.commons-hosted-region)
           - name: fail-on-lint-errors
             value: $(params.fail-on-lint-errors)
+          - name: dockerfile
+            value: $(params.dockerfile)
+
 
 
 
