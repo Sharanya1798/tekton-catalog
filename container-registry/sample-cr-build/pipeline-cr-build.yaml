@@ -74,6 +74,8 @@ spec:
       default: "true"
     - name: dockerfile
       default: "Dockerfile"
+    
+
 
 
    
@@ -262,36 +264,26 @@ spec:
       workspaces:
         - name: workspace
           workspace: pipeline-ws
-    - name: task-3-cr-build-task
-      runAfter: [task-2-maven-build]
+    - name: task-3-cr-build
+      runAfter: [task-1-git-clone]
       taskRef:
         name: icr-cr-build
       params:
-        - name: continuous-delivery-context-secret
-          value: "secure-properties"
-        - name: container-registry-apikey-secret-key
-          value: "apikey"
         - name: path-to-context
           value: $(params.path-to-dockerfile)
         - name: path-to-dockerfile
           value: $(params.path-to-dockerfile)
-        - name: registry-region
-          value: $(params.registry-region)
-        - name: registry-namespace
-          value: $(params.registry-namespace)
-        - name: image-name
-          value: $(params.image-name)
+        - name: image-url
+          value: $(params.image-url)
         - name: additional-tags
-          value: latest
+          value: latest,1.0.0-$(tasks.task-1-git-clone.results.git-branch)-$(tasks.task-1-git-clone.results.git-commit)
         - name: additional-tags-script
           value: |
             # The script is providing tag(s) as output
             # But logs can be written as error stderr
             echo "Providing an image tag including git branch and commit" >&2
             # Add a specific tag with cd build number
-            the_git_branch="$(tasks.task-1-git-clone.results.git-branch)"
-            the_git_commit="$(tasks.task-1-git-clone.results.git-commit)"
-            echo "1.0.0-${BUILD_NUMBER}-${the_git_branch}-${the_git_commit}"
+            echo "1.0.0-${BUILD_NUMBER}"
         - name: pipeline-debug
           value: $(params.pipeline-debug)
         - name: properties-file
@@ -299,7 +291,6 @@ spec:
       workspaces:
         - name: source
           workspace: pipeline-ws
-    
     - name: task-4-va-scan
       taskRef:
         name: icr-check-va-scan
@@ -322,7 +313,7 @@ spec:
           - name: image
             resource: app-image
             from:
-              - task-3-cr-build-task
+              - task-3-cr-build
     - name: publish-doi-va-scan-record
       runAfter:
         - task-4-va-scan
@@ -369,7 +360,7 @@ spec:
           - name: image
             resource: app-image
             from:
-              - task-3-cr-build-task
+              - task-3-cr-build
       workspaces:
       - name: task-pvc
         workspace: pipeline-ws  
