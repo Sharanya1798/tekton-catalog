@@ -265,7 +265,7 @@ spec:
           workspace: pipeline-ws
     
     - name: task-3-cr-build
-      runAfter: [task-2-maven-build]
+      runAfter: [task-1-git-clone]
       taskRef:
         name: icr-cr-build
       params:
@@ -273,24 +273,29 @@ spec:
           value: $(params.path-to-dockerfile)
         - name: path-to-dockerfile
           value: $(params.path-to-dockerfile)
-        - name: image-url
-          value: $(params.image-url)
         - name: additional-tags
-          value: latest,1.0.0-$(tasks.task-1-git-clone.results.git-branch)-$(tasks.task-1-git-clone.results.git-commit)
+          value: "latest"
         - name: additional-tags-script
           value: |
+            # Include the clone task output variables in the environment
+            source /artifacts/build.properties
             # The script is providing tag(s) as output
             # But logs can be written as error stderr
             echo "Providing an image tag including git branch and commit" >&2
+            # Add a specific tag with branch and commit
+            echo "1.0.0-${GIT_BRANCH}-${GIT_COMMIT}"
             # Add a specific tag with cd build number
             echo "1.0.0-${BUILD_NUMBER}"
         - name: pipeline-debug
           value: $(params.pipeline-debug)
-        - name: properties-file
-          value: ""
       workspaces:
         - name: source
           workspace: pipeline-ws
+      resources:
+        outputs:
+          - name: built-image
+            resource: app-image
+
     - name: task-4-va-scan
       taskRef:
         name: icr-check-va-scan
