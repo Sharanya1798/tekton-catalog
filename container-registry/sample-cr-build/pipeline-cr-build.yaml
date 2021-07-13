@@ -71,7 +71,7 @@ spec:
       default: .
     - name: fail-on-lint-errors
       description: force failure of task when docker lint errors are found
-      default: "true"
+      default: "false"
     - name: dockerfile
       default: "Dockerfile"
     
@@ -265,7 +265,7 @@ spec:
           workspace: pipeline-ws
     
     - name: task-3-cr-build
-      runAfter: [task-1-git-clone]
+      runAfter: [task-2-maven-build]
       taskRef:
         name: icr-cr-build
       params:
