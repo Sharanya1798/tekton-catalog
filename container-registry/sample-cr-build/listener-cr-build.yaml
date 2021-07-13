@@ -74,9 +74,6 @@ spec:
       default: ""
     - name: commons-hosted-region
       default: ""
-    - name: fail-on-lint-errors
-      description: force failure of task when docker lint errors are found
-      default: "true"
     - name: dockerfile
       default: "Dockerfile"
     - name: path-to-context
