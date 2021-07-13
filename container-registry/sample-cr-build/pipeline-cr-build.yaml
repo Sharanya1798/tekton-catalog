@@ -240,14 +240,6 @@ spec:
           value: $(params.scm-type)
         - name: project-id
           value: $(params.project-id)
-
-    - name: task-2-maven-build
-      runAfter: [task-1-git-clone]
-      taskRef:
-        name: toolchain-build
-      workspaces:
-        - name: source
-          workspace: pipeline-ws
     - name: docker-lint
       runAfter: [task-1-git-clone]
       taskRef:
@@ -264,6 +256,14 @@ spec:
       workspaces:
         - name: workspace
           workspace: pipeline-ws
+    - name: task-2-maven-build
+      runAfter: [task-1-git-clone]
+      taskRef:
+        name: toolchain-build
+      workspaces:
+        - name: source
+          workspace: pipeline-ws
+    
     - name: task-3-cr-build
       runAfter: [task-2-maven-build]
       taskRef:
@@ -311,7 +311,7 @@ spec:
       resources:
         inputs:
           - name: image
-            resource: built-image
+            resource: app-image
             from:
               - task-3-cr-build
     - name: publish-doi-va-scan-record
@@ -358,7 +358,7 @@ spec:
       resources:
         inputs:
           - name: image
-            resource: built-image
+            resource: app-image
             from:
               - task-3-cr-build
       workspaces:
