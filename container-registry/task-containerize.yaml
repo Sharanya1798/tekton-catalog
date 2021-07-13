@@ -183,7 +183,7 @@ spec:
         - mountPath: /scripts
           name: check-registry-scripts
     - name: build-image
-      image: ibmcom/pipeline-base-image:2.7
+      image: $(params.buildkit-image)
       workingDir: /artifacts
       env:
         # specifying DOCKER_CONFIG is required to allow buildkit to detect docker credentials
