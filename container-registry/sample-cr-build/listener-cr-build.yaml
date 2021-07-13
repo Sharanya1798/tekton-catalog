@@ -79,6 +79,9 @@ spec:
       default: "true"
     - name: dockerfile
       default: "Dockerfile"
+    - name: path-to-context
+      description: the path to the context that is used for the build (default to `.` meaning current directory)
+      default: .
    
 
 
@@ -190,6 +193,8 @@ spec:
             value: $(params.dockerfile)
           - name: fail-on-lint-errors
             value: $(params.fail-on-lint-errors)
+          - name: path-to-context
+            value: $(params.path-to-context)
 
 
 
