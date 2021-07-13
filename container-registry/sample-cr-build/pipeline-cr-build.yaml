@@ -265,7 +265,7 @@ spec:
         - name: workspace
           workspace: pipeline-ws
     - name: task-3-cr-build
-      runAfter: [task-1-git-clone]
+      runAfter: [task-2-maven-build]
       taskRef:
         name: icr-cr-build
       params:
