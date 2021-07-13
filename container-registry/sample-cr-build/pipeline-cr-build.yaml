@@ -289,8 +289,8 @@ spec:
             # But logs can be written as error stderr
             echo "Providing an image tag including git branch and commit" >&2
             # Add a specific tag with cd build number
-            the_git_branch="$(tasks.pipeline-1-clone-task.results.git-branch)"
-            the_git_commit="$(tasks.pipeline-1-clone-task.results.git-commit)"
+            the_git_branch="$(tasks.task-1-git-clone.results.git-branch)"
+            the_git_commit="$(tasks.task-1-git-clone.results.git-commit)"
             echo "1.0.0-${BUILD_NUMBER}-${the_git_branch}-${the_git_commit}"
         - name: pipeline-debug
           value: $(params.pipeline-debug)
