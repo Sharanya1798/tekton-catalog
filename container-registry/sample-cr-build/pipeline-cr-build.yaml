@@ -311,7 +311,7 @@ spec:
       resources:
         inputs:
           - name: image
-            resource: app-image
+            resource: built-image
             from:
               - task-3-cr-build
     - name: publish-doi-va-scan-record
@@ -358,7 +358,7 @@ spec:
       resources:
         inputs:
           - name: image
-            resource: app-image
+            resource: built-image
             from:
               - task-3-cr-build
       workspaces:
