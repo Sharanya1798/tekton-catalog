@@ -18,7 +18,7 @@ spec:
       default: deployment.yml
     - name: clusterNamespace
       default: prod
-    - name: cluster-name
+    - name: cluster
       description: The IBM Cloud Kubernetes cluster name
     - name: clusterRegion
       description: The IBM Cloud Kubernetes cluster region
@@ -42,7 +42,7 @@ spec:
         - name: CLUSTER_NAMESPACE
           value: $(params.clusterNamespace)
         - name: PIPELINE_KUBERNETES_CLUSTER_NAME
-          value: $(params.cluster-name)
+          value: $(params.cluster)
       command: ["/bin/bash", "-c"]
       args:
         - set -e -o pipefail;
@@ -70,7 +70,7 @@ spec:
         - name: CLUSTER_NAMESPACE
           value: $(params.clusterNamespace)
         - name: PIPELINE_KUBERNETES_CLUSTER_NAME
-          value: $(params.cluster-name)
+          value: $(params.cluster)
       command: ["/bin/bash", "-c"]
       args:
         - set -e -o pipefail;
