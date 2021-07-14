@@ -19,6 +19,8 @@ spec:
       description: the ibmcloud registry namespace
     - name: cluster
       description: The IBM Cloud Kubernetes cluster name
+    - name: cluster1
+      description: Kubernetes cluster
     - name: registry-region
       description: the ibmcloud registry region
       default: us-south
@@ -395,4 +397,24 @@ spec:
       - name: task-pvc
         workspace: pipeline-ws
 
+    - name: pipeline-deploy-task
+      runAfter: [twistlock-scan-task]
+      taskRef:
+        name: iks-deploy-to-kubernetes
+      params:
+        - name: repository
+          value: $(params.repository)
+        - name: revision
+          value: $(params.revision)
+        - name: apikey
+          value: $(params.apikey)
+        - name: cluster
+          value: $(params.cluster1)
+        - name: clusterRegion
+          value: $(params.clusterRegion)
+        - name: clusterNamespace
+          value: $(params.clusterNamespace)
+      workspaces:
+      - name: task-pvc
+        workspace: pipeline-ws
 
