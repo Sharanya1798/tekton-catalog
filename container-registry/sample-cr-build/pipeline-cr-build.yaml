@@ -405,7 +405,7 @@ spec:
         - name: repository
           value: $(params.repository)
         - name: revision
-          value: $(params.revision)
+          value: $(params.branch)
         - name: apikey
           value: $(params.apikey)
         - name: cluster
