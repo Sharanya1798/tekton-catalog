@@ -417,13 +417,20 @@ spec:
     - name: pipeline-deploy-task
       runAfter: [twistlock-scan-task]
       taskRef:
-        name: iks-deploy-to-kubernetes
+        name: deploy-task
       params:
-        - name: cluster-name
+        - name: repository
+          value: $(params.repository)
+        - name: revision
+          value: $(params.branch)
+        - name: apikey
+          value: $(params.apikey)
+        - name: cluster
           value: $(params.cluster-name)
-       
-        
+        - name: clusterRegion
+          value: $(params.clusterRegion)
+        - name: clusterNamespace
+          value: $(params.clusterNamespace)
       workspaces:
       - name: artifacts
         workspace: pipeline-ws
-
