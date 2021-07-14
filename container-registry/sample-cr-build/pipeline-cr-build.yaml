@@ -19,7 +19,7 @@ spec:
       description: the ibmcloud registry namespace
     - name: cluster
       description: The IBM Cloud Kubernetes cluster name
-    - name: cluster1
+    - name: cluster-name
       description: Kubernetes cluster
     - name: registry-region
       description: the ibmcloud registry region
@@ -408,8 +408,8 @@ spec:
           value: $(params.branch)
         - name: apikey
           value: $(params.apikey)
-        - name: cluster
-          value: $(params.cluster1)
+        - name: cluster-name
+          value: $(params.cluster-name)
         - name: clusterRegion
           value: $(params.clusterRegion)
         - name: clusterNamespace
