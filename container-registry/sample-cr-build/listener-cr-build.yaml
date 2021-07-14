@@ -79,6 +79,8 @@ spec:
     - name: path-to-context
       description: the path to the context that is used for the build (default to `.` meaning current directory)
       default: .
+    - name: cluster-name
+      description: Kubernetes cluster
     
    
 
@@ -193,6 +195,8 @@ spec:
             value: $(params.fail-on-lint-errors)
           - name: path-to-context
             value: $(params.path-to-context)
+          - name: cluster-name
+            value: $(params.cluster-name)
 
 
 
