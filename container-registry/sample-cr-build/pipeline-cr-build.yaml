@@ -408,5 +408,5 @@ spec:
         - name: clusterNamespace
           value: $(params.clusterNamespace)
       workspaces:
-      - name: task-pvc
+      - name: source
         workspace: pipeline-ws
