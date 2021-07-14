@@ -80,5 +80,5 @@ spec:
           if which oc > /dev/null && ibmcloud ks cluster get -c "${PIPELINE_KUBERNETES_CLUSTER_NAME}" --json | jq -e '.type=="openshift"' > /dev/null; then oc login -u apikey -p "${IBMCLOUD_API_KEY}" ; fi;
           while read line; do export $line; done < /artifacts/build.properties;
           cp /artifacts/build.properties .;
-          cd /workspace && source deploy-to-kubernetes.sh;
+          source /artifacts/deploy-to-kubernetes.sh;
       
