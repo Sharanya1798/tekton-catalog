@@ -289,7 +289,7 @@ spec:
         name: icr-cr-build
       params:
         - name: path-to-context
-          value: $(params.path-to-dockerfile)
+          value: $(params.path-to-context)
         - name: path-to-dockerfile
           value: $(params.path-to-dockerfile)
         - name: additional-tags
