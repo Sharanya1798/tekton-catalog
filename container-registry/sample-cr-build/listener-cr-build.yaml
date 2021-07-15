@@ -19,8 +19,7 @@ spec:
       description: the branch for the git repo
     - name: apikey
       description: the ibmcloud api key
-    - name: apikeyscan
-      description: doi plugin
+   
     - name: dockerconfigjson
       description: registry secret      
     - name: registry-namespace
@@ -173,8 +172,6 @@ spec:
             value: $(params.resourcegroup)
           - name: toolchain-id
             value: $(params.toolchain-id)
-          - name: apikeyscan
-            value: $(params.apikeyscan)
           - name: build-args
             value: $(params.build-args)
           - name: fail-on-scanned-issues
