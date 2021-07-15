@@ -423,7 +423,7 @@ spec:
         - name: cluster-region
           value: $(params.clusterRegion)
         - name: resource-group
-          value: $(params.resourcegroup)
+          value: default
         - name: cluster-name
           value: $(params.cluster)
         - name: setup-script
@@ -490,7 +490,7 @@ spec:
         - name: cluster-region
           value: $(params.clusterRegion)
         - name: resource-group
-          value: $(params.resourcegroup)
+          value: default
         - name: cluster-name
           value: $(params.cluster)
         - name: setup-script
