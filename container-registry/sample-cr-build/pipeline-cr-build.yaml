@@ -65,7 +65,7 @@ spec:
       description: create container registry namespace if it doesn't already exists
       default: "true"
     - name: commons-hosted-region
-      default: "https://raw.githubusercontent.com/open-toolchain/commons/master"
+      default: "https://github.com/open-toolchain/commons/tree/master"
     - name: path-to-context
       description: the path to the context that is used for the build (default to `.` meaning current directory)
       default: .
@@ -447,7 +447,7 @@ spec:
             # This script checks the IBM Container Service cluster is ready, has a namespace configured with access to the private
             # image registry (using an IBM Cloud API Key), perform a kubectl deploy of container image and check on outcome.
             
-            source <(curl -sSL "https://github.ibm.com/WML/wml-model-serve/blob/tekton-test/deploy-to-kubernetes.sh")
+            source <(curl -sSL "$(params.commons-hosted-region)/scripts/check_and_deploy_kubectl.sh")
             
   
         - name: post-execution-script
