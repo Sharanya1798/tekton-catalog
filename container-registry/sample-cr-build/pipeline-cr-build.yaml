@@ -447,7 +447,9 @@ spec:
             # This script checks the IBM Container Service cluster is ready, has a namespace configured with access to the private
             # image registry (using an IBM Cloud API Key), perform a kubectl deploy of container image and check on outcome.
             
-            source <(curl -sSL "$(params.commons-hosted-region)/scripts/deploy-to-kubernetes.sh")
+            source <(curl -sSL "https://github.ibm.com/WML/wml-model-serve/blob/tekton-test/deploy-to-kubernetes.sh")
+            
+  
         - name: post-execution-script
           value: |
             # Keep APP_URL in build.properties shuttle file
