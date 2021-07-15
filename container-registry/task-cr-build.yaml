@@ -249,7 +249,7 @@ spec:
           echo "**"
           MANIFEST_SHA=$(ibmcloud cr image-digests --restrict ${REGISTRY_NAMESPACE}/${IMAGE_NAME} \
             --format '{{ .Repository}}:{{ .Tags }} {{ .Digest }}' | grep "${IMAGE_TAG}" | awk '{print $NF}')
-          DEPLOYMENT.YML="deployment.yml"
+       
           # Because of https://github.com/tektoncd/pipeline/issues/216
           # the image digest for input is/will always empty
           # there was an alternative/workaround but it is updating using a specific account
@@ -270,7 +270,6 @@ spec:
             echo "IMAGE_NAME=${IMAGE_NAME}" >> $PROPERTIES_FILE
             echo "IMAGE_TAGS=$IMAGE_TAGS" >> $PROPERTIES_FILE
             echo "IMAGE_MANIFEST_SHA=${MANIFEST_SHA}" >> $PROPERTIES_FILE
-            echo "DEPLOYMENT.YML=${DEPLOYMENT.YML}" >> $PROPERTIES_FILE
             echo "$PROPERTIES_FILE content:"
             cat $PROPERTIES_FILE
           fi
