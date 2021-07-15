@@ -422,8 +422,6 @@ spec:
           value: "build.properties"
         - name: cluster-region
           value: $(params.clusterRegion)
-        - name: resource-group
-          value: default
         - name: cluster-name
           value: $(params.cluster)
         - name: setup-script
@@ -489,8 +487,6 @@ spec:
           value: "build.properties"
         - name: cluster-region
           value: $(params.clusterRegion)
-        - name: resource-group
-          value: default
         - name: cluster-name
           value: $(params.cluster)
         - name: setup-script
