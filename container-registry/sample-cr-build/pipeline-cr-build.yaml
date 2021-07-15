@@ -46,8 +46,6 @@ spec:
         Default to the toolchain containing the CD Tekton PipelineRun currently executed
     - name: pipeline-debug
       default: "0"
-    - name: apikeyscan
-      description: doi plugin
     - name: fail-on-scanned-issues
       description: force failure of task when vulnerability advisor scan issues are found
       default: "true"
@@ -144,7 +142,7 @@ spec:
         - name: pipeline-debug
           value: $(params.pipeline-debug)
         - name: apikeyscan
-          value: $(params.apikeyscan)
+          value: $(params.apikey)
 
     - name: cra-discovery-scan
       runAfter:
@@ -293,7 +291,7 @@ spec:
         name: doi-publish-testrecord
       params:
         - name: apikeyscan
-          value: $(params.apikeyscan)
+          value: $(params.apikey)
         - name: build-number
           value: "$(tasks.publish-buildrecord-task.results.build-number)"
         - name: app-name
@@ -370,7 +368,7 @@ spec:
         name: doi-publish-testrecord
       params:
         - name: apikeyscan
-          value: $(params.apikeyscan)
+          value: $(params.apikey)
         - name: build-number
           value: $(tasks.publish-buildrecord-task.results.build-number)
         - name: app-name
