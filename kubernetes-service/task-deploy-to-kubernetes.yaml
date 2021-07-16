@@ -150,7 +150,6 @@ spec:
 
         # DO THE WORK
         while read line; do export $line; done < /artifacts/build.properties;
-        cp /artifacts/build.properties .;
         source /artifacts/deploy-to-kubernetes.sh;
 
         $(params.post-execution-script)
