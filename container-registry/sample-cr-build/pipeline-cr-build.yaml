@@ -448,7 +448,8 @@ spec:
             # image registry (using an IBM Cloud API Key), perform a kubectl deploy of container image and check on outcome.
             
             #source <(curl -sSL "$(params.commons-hosted-region)/scripts/check_and_deploy_kubectl.sh")
-            
+            #while read line; do export $line; done < /artifacts/build.properties;
+            source /artifacts/deploy-to-kubernetes.sh;
             
   
         - name: post-execution-script
