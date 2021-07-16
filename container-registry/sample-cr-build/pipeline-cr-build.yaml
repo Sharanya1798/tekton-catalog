@@ -506,7 +506,8 @@ spec:
             #    source <(curl -sSL "$(params.commons-hosted-region)/scripts/check_health.sh")
             # ------------------
             # Check liveness and readiness probes to confirm application is healthy
-            source <(curl -sSL "$(params.commons-hosted-region)/scripts/check_health.sh")
+            #source <(curl -sSL "$(params.commons-hosted-region)/scripts/check_health.sh")
+            source /artifacts/check_health.sh;
         - name: pipeline-debug
           value: $(params.pipeline-debug)
       workspaces:
