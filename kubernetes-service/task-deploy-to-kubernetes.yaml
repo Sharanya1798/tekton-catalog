@@ -149,8 +149,8 @@ spec:
         $(params.setup-script)
 
         # DO THE WORK
-        while read line; do export $line; done < /artifacts/build.properties;
-        source /artifacts/deploy-to-kubernetes.sh;
+        $(params.script)
+       
 
         $(params.post-execution-script)
 
