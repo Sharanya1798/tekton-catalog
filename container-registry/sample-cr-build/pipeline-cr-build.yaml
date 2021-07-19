@@ -494,6 +494,8 @@ spec:
           value: $(params.app-name)
         - name: pipeline-debug
           value: $(params.pipeline-debug)
+        - name: environment
+          value: "$(params.cluster) namespace:$(params.clusterNamespace)"
       workspaces:
         - name: artifacts
           workspace: pipeline-ws
