@@ -496,9 +496,7 @@ spec:
           value: $(params.pipeline-debug)
         - name: environment
           value: "$(params.cluster) namespace:$(params.clusterNamespace)"
-      workspaces:
-        - name: artifacts
-          workspace: pipeline-ws
+ 
     - name: check-health
       taskRef:
         name: iks-deploy-to-kubernetes
