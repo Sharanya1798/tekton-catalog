@@ -482,6 +482,21 @@ spec:
           value: "$(tasks.task-1-git-clone.results.git-repository),$(tasks.task-1-git-clone.results.git-commit),$(tasks.task-1-git-clone.results.git-branch)"
         - name: pipeline-debug
           value: $(params.pipeline-debug)
+    - name: publish-doi-build-record
+      runAfter:
+        - deploy-to-kubernetes
+      taskRef:
+        name: doi-publish-deployrecord
+      params:
+        - name: build-number
+          value: $(tasks.publish-buildrecord-task.results.build-number)
+        - name: app-name
+          value: $(params.app-name)
+        - name: pipeline-debug
+          value: $(params.pipeline-debug)
+      workspaces:
+        - name: artifacts
+          workspace: pipeline-ws
     - name: check-health
       taskRef:
         name: iks-deploy-to-kubernetes
