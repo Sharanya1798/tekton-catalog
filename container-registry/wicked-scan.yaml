@@ -49,7 +49,7 @@ spec:
         #!/bin/bash
         set -e -o pipefail;
        
-        REPO_DIR_PATH="/artifacts"
+        REPO_DIR_PATH="/artifacts/build.properties"
         for entry in "$REPO_DIR_PATH"/*
         do
            echo "$entry"
