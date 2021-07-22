@@ -1,0 +1,56 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: wicked-scan-task
+spec:
+  params:
+    - name: repository
+      description: the git repo
+    - name: revision
+      description: the revision
+      default: master
+    - name: commit-id
+      description: git commit id
+    - name: commit-timestamp
+      description: git commit timestamp
+    - name: directory-name
+      description: directory name where the repository is cloned
+    - name: pipeline-debug
+      description: Pipeline debug mode. Value can be 0 or 1. Default to 0
+      default: "0"
+    - name: apikey
+      description: the ibmcloud api key
+      default: apikey
+    - name: api
+      description: the ibmcloud api endpoint
+      default: "https://cloud.ibm.com"
+    - name: wicked-scan-report-file
+      description: filename for the scan report (json format) of the given image. It will be copied in the workspace
+      default: ""
+  results:
+    - name: wicked-scan-report-file
+      description: the filename if the wcked scan report
+  workspaces:
+    - name: artifacts
+      description: |
+        Workspace that may contain github information and will have wicked scan report.
+      mountPath: /artifacts 
+
+
+  steps:
+    - name: wicked-scan
+      image: nshah25/wicked-base:1.0
+      env:
+        - name: APIKEY
+          value: $(params.apikey)
+        - name: API
+          value: $(params.api)
+        - name: HOME
+          value: "/root"
+      script: |
+        #!/bin/bash
+        set -e -o pipefail;
+        ibmcloud login -a $API -r $REGION --apikey $API_KEY;
+        REPO_DIR_PATH="/artifacts/$(params.directory-name)"
+        wicked-cli -s /$(REPO_DIR_PATH)/$(params.repository) --offline 
+        
