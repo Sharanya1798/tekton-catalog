@@ -51,10 +51,5 @@ spec:
        
         REPO_DIR_PATH="/artifacts/$(params.directory-name)"
         echo "$REPO_DIR_PATH"
-        ls /artifacts/build.properties
-        for entry in "$REPO_DIR_PATH"/*
-        do
-           echo "$entry"
-        done
-       
+        wicked-cli -s /$(REPO_DIR_PATH)/$(params.repository) --offline
         
