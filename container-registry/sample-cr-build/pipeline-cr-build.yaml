@@ -113,6 +113,23 @@ spec:
       workspaces:
         - name: output
           workspace: pipeline-ws
+    - name: wicked-scan-check
+      taskRef:
+        name: wicked-scan-task
+      runAfter:
+        - task-1-git-clone
+      workspaces:
+        - name: artifacts
+          workspace: pipeline-ws
+      params:
+        - name: repository
+          value: $(tasks.extract-repository-url.results.extracted-value)
+        - name: revision
+          value: $(params.branch)
+        - name: commit-id
+          value: $(tasks.task-1-git-clone.results.git-commit)
+        - name: directory-name
+          value: ""
     - name: extract-doi-enablement
       taskRef:
         name: toolchain-extract-value
