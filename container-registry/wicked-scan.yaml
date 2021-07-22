@@ -53,7 +53,7 @@ spec:
         for entry in "$REPO_DIR_PATH"/*
         do
            echo "$entry"
-           for i in $entry
+           for i in "$entry"/*
            do 
             echo "$i"
            done
