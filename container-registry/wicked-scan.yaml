@@ -50,5 +50,6 @@ spec:
         set -e -o pipefail;
        
         REPO_DIR_PATH="/artifacts/$(params.directory-name)"
+        echo "$(REPO_DIR_PATH)/$(params.repository)"
         wicked-cli -s /$(REPO_DIR_PATH)/$(params.repository) --offline 
         
