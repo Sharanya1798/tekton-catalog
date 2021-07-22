@@ -27,7 +27,7 @@ spec:
       default: ""
   results:
     - name: wicked-scan-report-file
-      description: the filename if the wcked scan report
+      description: the filename if the wicked scan report
   workspaces:
     - name: artifacts
       description: |
@@ -49,10 +49,14 @@ spec:
         #!/bin/bash
         set -e -o pipefail;
        
-        REPO_DIR_PATH="/artifacts/build.properties"
+        REPO_DIR_PATH="/artifacts"
         for entry in "$REPO_DIR_PATH"/*
         do
            echo "$entry"
+           for i in $entry
+           do 
+            echo "$i"
+           done
         done
        
         
