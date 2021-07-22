@@ -49,15 +49,11 @@ spec:
         #!/bin/bash
         set -e -o pipefail;
        
-        REPO_DIR_PATH="/artifacts/./"
+        REPO_DIR_PATH="/artifacts/$(params.directory-name)"
         echo "$REPO_DIR_PATH"
         for entry in "$REPO_DIR_PATH"/*
         do
            echo "$entry"
-           for i in "$entry"/*
-           do 
-            echo "$i"
-           done
         done
        
         
