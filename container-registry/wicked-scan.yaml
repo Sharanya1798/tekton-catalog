@@ -48,7 +48,7 @@ spec:
       script: |
         #!/bin/bash
         set -e -o pipefail;
-        ibmcloud login -a $API -r $REGION --apikey $API_KEY;
+       
         REPO_DIR_PATH="/artifacts/$(params.directory-name)"
         wicked-cli -s /$(REPO_DIR_PATH)/$(params.repository) --offline 
         
