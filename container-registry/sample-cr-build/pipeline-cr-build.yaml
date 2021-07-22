@@ -123,7 +123,7 @@ spec:
           workspace: pipeline-ws
       params:
         - name: repository
-          value: $(tasks.extract-repository-url.results.extracted-value)
+          value: $(tasks.task-1-git-clone.results.git-repository)
         - name: revision
           value: $(params.branch)
         - name: commit-id
@@ -181,7 +181,7 @@ spec:
         - name: pipeline-debug
           value: $(params.pipeline-debug)
         - name: directory-name
-          value: ""
+          value: "."
         - name: commit-timestamp
           value: $(params.commit-timestamp)
     - name: code-vulnerability-scan
