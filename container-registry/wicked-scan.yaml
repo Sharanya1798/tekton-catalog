@@ -11,8 +11,6 @@ spec:
       default: master
     - name: commit-id
       description: git commit id
-    - name: commit-timestamp
-      description: git commit timestamp
     - name: directory-name
       description: directory name where the repository is cloned
     - name: pipeline-debug
